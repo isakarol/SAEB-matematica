@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dicas matemáticas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="splash">
+    <h1 class="fade-in">Analisando os Descritores Matemáticos</h1>
+    <p class="fade-in delay1">Ajudando a entender a SAEB</p>
+    <button class="fade-in delay2" onclick="enterSite()">Entrar no site</button>
+  </div>
+
+  <div id="mainContent" style="display:none;">
+    <header>
+      <h2>Bem-vindo ao Guia de Descritores SAEB</h2>
+    </header>
+
+    <div class="card-links">
+      <a href="index1.html" class="nav-card" title="Sobre o SAEB">Sobre o SAEB</a>
+      <a href="index2.html" class="nav-card" title="Descritores e Habilidades">Descritores e Habilidades</a>
+      <a href="index3.html" class="nav-card" title="Exemplos e Questões">Questões e Resoluções</a>
+      <a href="index5.html" class="nav-card" title="Dicas Rápidas">Dicas Rápidas</a>
+    </div>
+
+<section class="medalhas">
+  <h2>🏅 Suas Conquistas no Guia SAEB</h2>
+
+  <div class="medalha-box">
+
+    <!-- Medalha 1 -->
+    <input type="checkbox" id="m1" />
+    <label for="m1" class="medalha">
+      <span class="icone">🥇</span>
+      <p>Entendeu sobre o SAEB</p>
+    </label>
+
+    <!-- Medalha 2 -->
+    <input type="checkbox" id="m2" />
+    <label for="m2" class="medalha">
+      <span class="icone">🥈</span>
+      <p>Leu todos os descritores</p>
+    </label>
+
+    <!-- Medalha 3 -->
+    <input type="checkbox" id="m3" />
+    <label for="m3" class="medalha">
+      <span class="icone">🥉</span>
+      <p>Fez os exercícios</p>
+    </label>
+
+  </div>
+</section>
+
+
+    <footer class="footer-grama">
+      <p>&copy; 2025 - Guia Matemático SAEB</p>
+      <a href="index4.html" class="Autores" title="Autores do site">Autores</a>
+    </footer>
+  </div>
+
+  <div class="rain" id="rain"></div>
+
+  <script>
+    function enterSite() {
+      const splash = document.getElementById('splash');
+      const main = document.getElementById('mainContent');
+      const rain = document.getElementById('rain');
+
+      splash.style.transition = 'opacity 1s ease';
+      splash.style.opacity = '0';
+      rain.style.transition = 'opacity 2s ease';
+      rain.style.opacity = '0';
+
+      setTimeout(() => {
+        splash.style.display = 'none';
+        rain.style.display = 'none';
+        main.style.display = 'block';
+        main.style.opacity = '0';
+        setTimeout(() => {
+          main.style.transition = 'opacity 1.5s ease';
+          main.style.opacity = '1';
+        }, 50);
+      }, 2000);
+    }
+
+    const rainContainer = document.getElementById('rain');
+    const symbols = ['+', '−', '×', '÷', '=', '√', 'π', '∑', '∫', '≈'];
+
+    for (let i = 0; i < 100; i++) {
+      const symbol = document.createElement('div');
+      symbol.classList.add('symbol');
+      symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      symbol.style.left = `${Math.random() * 100}vw`;
+      symbol.style.fontSize = `${Math.random() * 20 + 16}px`;
+      symbol.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      symbol.style.animationDelay = `${Math.random() * 4}s`;
+      rainContainer.appendChild(symbol);
+    }
+  </script>
+</body>
+</html>
+

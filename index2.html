@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Descritores e Habilidades - Guia Matemático SAEB</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Descritores e Habilidades</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Página Inicial</a></li>
+        <li><a href="index1.html">Sobre o SAEB</a></li>
+        <li><a href="index3.html">Questões e Resoluções</a></li>
+        <li><a href="index4.html">Autores</a></li>
+        <li><a href="index5.html">Dicas</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>O que são os Descritores?</h2>
+      <p>Os descritores são pontos-chave que indicam habilidades específicas avaliadas na prova do SAEB. Cada descritor representa um domínio do conhecimento matemático que o aluno precisa dominar para demonstrar compreensão e raciocínio lógico.</p>
+    </section>
+
+    <section class="card">
+      <h2>Por que são importantes?</h2>
+      <p>Estudar com base nos descritores ajuda a focar em conteúdos que realmente são cobrados, melhorando o desempenho nas avaliações e fortalecendo o aprendizado significativo da matemática.</p>
+    </section>
+
+<section class="cardtitulo">
+  <h2><span class="destaque-descritor">🧩 Entendendo Alguns Descritores</span></h2>
+</section>
+
+
+
+    <section class="card">
+  <h2>📐 Descritor D5: Resolver problema com razões trigonométricas no triângulo retângulo</h2>
+
+ 
+  <h3>📌 Triângulo Retângulo</h3>
+  <p>Um triângulo retângulo é aquele que possui um ângulo de 90°.</p>
+  <ul>
+    <li><strong>Hipotenusa:</strong> lado oposto ao ângulo de 90° (é o maior lado)</li>
+    <li><strong>Cateto oposto:</strong> lado oposto ao ângulo que estamos observando</li>
+    <li><strong>Cateto adjacente:</strong> lado “colado” no ângulo que estamos observando</li>
+  </ul>
+
+  <div id="triangulo-interativo" style="margin-top: 30px;">
+  <h3>🔄 Triângulo Retângulo Interativo</h3>
+  <label for="angleRange">Ajuste o ângulo θ (graus): <span id="angleValue">45</span>°</label><br />
+  <input type="range" id="angleRange" min="10" max="80" value="45" step="1" />
+
+  <svg width="500" height="500" viewBox="0 0 320 320" style="border:1px solid #ddd; margin-top: 15px;">
+    <polygon id="triangleShape" points="30,170 190,170 30,170" fill="#89CFF0" stroke="#005f99" stroke-width="2" />
+    <line id="hipotenusaLine" x1="30" y1="170" x2="190" y2="50" stroke="#004080" stroke-width="3" />
+    <line id="catetoAdjLine" x1="30" y1="170" x2="190" y2="170" stroke="#008000" stroke-width="3" />
+    <line id="catetoOppLine" x1="190" y1="170" x2="190" y2="50" stroke="#d2691e" stroke-width="3" />
+    
+    <path id="angleArc" fill="none" stroke="#ff0000" stroke-width="2" />
+    <text id="angleLabel" x="55" y="160" font-size="16" fill="#ff0000" font-weight="bold">θ</text>
+    <text id="labelHipotenusa" fill="#004080" font-weight="bold" font-size="14" text-anchor="middle">Hipotenusa</text>
+    <text id="labelCatetoAdj" fill="#008000" font-weight="bold" font-size="14" text-anchor="middle">Cateto Adj.</text>
+    <text id="labelCatetoOpp" fill="#d2691e" font-weight="bold" font-size="14" text-anchor="middle">Cateto Opp.</text>
+  </svg>
+
+  <div style="margin-top: 15px;">
+    <p><strong>Valores calculados:</strong></p>
+    <ul>
+      <li>Hipotenusa (fixa): 10 unidades</li>
+      <li>Cateto Adjacente: <span id="catetoAdjVal">7.07</span></li>
+      <li>Cateto Oposto: <span id="catetoOppVal">7.07</span></li>
+      <li>Seno(θ) = <span id="sinVal">0.71</span></li>
+      <li>Cosseno(θ) = <span id="cosVal">0.71</span></li>
+      <li>Tangente(θ) = <span id="tanVal">1.00</span></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+(() => {
+  const angleRange = document.getElementById('angleRange');
+  const angleValue = document.getElementById('angleValue');
+  const angleArc = document.getElementById('angleArc');
+  const angleLabel = document.getElementById('angleLabel');
+  const triangleShape = document.getElementById('triangleShape');
+  const hipotenusaLine = document.getElementById('hipotenusaLine');
+  const catetoAdjLine = document.getElementById('catetoAdjLine');
+  const catetoOppLine = document.getElementById('catetoOppLine');
+  const labelHipotenusa = document.getElementById('labelHipotenusa');
+  const labelCatetoAdj = document.getElementById('labelCatetoAdj');
+  const labelCatetoOpp = document.getElementById('labelCatetoOpp');
+  const catetoAdjVal = document.getElementById('catetoAdjVal');
+  const catetoOppVal = document.getElementById('catetoOppVal');
+  const sinVal = document.getElementById('sinVal');
+  const cosVal = document.getElementById('cosVal');
+  const tanVal = document.getElementById('tanVal');
+
+  const hipotenusa = 10;
+
+  function toRadians(deg) {
+    return deg * Math.PI / 180;
+  }
+
+  function update(angleDeg) {
+    angleValue.textContent = angleDeg;
+    const angleRad = toRadians(angleDeg);
+
+    const catetoAdj = hipotenusa * Math.cos(angleRad);
+    const catetoOpp = hipotenusa * Math.sin(angleRad);
+
+    catetoAdjVal.textContent = catetoAdj.toFixed(2);
+    catetoOppVal.textContent = catetoOpp.toFixed(2);
+    sinVal.textContent = Math.sin(angleRad).toFixed(2);
+    cosVal.textContent = Math.cos(angleRad).toFixed(2);
+    tanVal.textContent = Math.tan(angleRad).toFixed(2);
+
+    const Ax = 30;
+const Ay = 240;
+const Bx = 30 + catetoAdj * 20;
+const By = 240 - catetoOpp * 20;
+const Cx = Bx;
+const Cy = 240;
+
+// Atualizar os pontinhos pretos nos vértices
+let circles = document.querySelectorAll('svg circle');
+if (circles.length === 0) {
+  const svg = document.querySelector('svg');
+  ['A', 'B', 'C'].forEach(() => {
+    const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    c.setAttribute("r", "4");
+    c.setAttribute("fill", "#000");
+    svg.appendChild(c);
+  });
+  circles = document.querySelectorAll('svg circle');
+}
+
+circles[0].setAttribute('cx', Ax);
+circles[0].setAttribute('cy', Ay);
+circles[1].setAttribute('cx', Bx);
+circles[1].setAttribute('cy', By);
+circles[2].setAttribute('cx', Cx);
+circles[2].setAttribute('cy', Cy);
+
+
+    triangleShape.setAttribute('points', `${Ax},${Ay} ${Bx},${By} ${Cx},${Cy}`);
+    hipotenusaLine.setAttribute('x1', Ax);
+    hipotenusaLine.setAttribute('y1', Ay);
+    hipotenusaLine.setAttribute('x2', Bx);
+    hipotenusaLine.setAttribute('y2', By);
+    catetoAdjLine.setAttribute('x1', Ax);
+    catetoAdjLine.setAttribute('y1', Ay);
+    catetoAdjLine.setAttribute('x2', Cx);
+    catetoAdjLine.setAttribute('y2', Cy);
+    catetoOppLine.setAttribute('x1', Cx);
+    catetoOppLine.setAttribute('y1', Cy);
+    catetoOppLine.setAttribute('x2', Bx);
+    catetoOppLine.setAttribute('y2', By);
+    labelHipotenusa.setAttribute('x', (Ax + Bx) / 2 - 10);
+    labelHipotenusa.setAttribute('y', (Ay + By) / 2 - 10);
+    labelCatetoAdj.setAttribute('x', (Ax + Cx) / 2);
+    labelCatetoAdj.setAttribute('y', (Ay + Cy) / 2 + 15);
+    labelCatetoOpp.setAttribute('x', (Cx + Bx) / 2 + 10);
+    labelCatetoOpp.setAttribute('y', (Cy + By) / 2);
+
+    const arcRadius = 25;
+    const startX = Ax + arcRadius;
+    const startY = Ay;
+    const endX = Ax + arcRadius * Math.cos(angleRad);
+    const endY = Ay - arcRadius * Math.sin(angleRad);
+    const largeArcFlag = 0;
+    const pathData = `M ${startX},${startY} A ${arcRadius},${arcRadius} 0 ${largeArcFlag} 0 ${endX},${endY}`;
+    angleArc.setAttribute('d', pathData);
+    angleLabel.setAttribute('x', Ax + arcRadius / 2);
+    angleLabel.setAttribute('y', Ay - arcRadius / 3);
+  }
+
+  angleRange.addEventListener('input', e => update(+e.target.value));
+  update(+angleRange.value);
+})();
+</script>
+
+  <h3>📏 Razões Trigonométricas</h3>
+  <table class="area-table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Fórmula</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Seno</td>
+        <td>sin(θ) = cateto oposto / hipotenusa</td>
+      </tr>
+      <tr>
+        <td>Cosseno</td>
+        <td>cos(θ) = cateto adjacente / hipotenusa</td>
+      </tr>
+      <tr>
+        <td>Tangente</td>
+        <td>tan(θ) = cateto oposto / cateto adjacente</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>θ</strong> representa o ângulo agudo conhecido do triângulo.</p>
+
+
+
+  
+
+  <details>
+  <summary>Assistir a explicação</summary>
+  <div class="video-container">
+    <video controls>
+      <source src="video roro2explicação.mp4" type="video/mp4">
+      Seu navegador não suporta a reprodução de vídeos.
+    </video>
+  </div>
+</details>
+</section>
+
+
+  <section class="card">
+  <h2>📐 Descritor D13: Resolver problema envolvendo a área total e/ou volume de um sólido (prisma, pirâmide, cilindro, cone, esfera)</h2>
+
+  <p>🔎 <strong>O que ele avalia?</strong><br>
+  Esse descritor verifica se o aluno consegue:</p>
+
+  <ul>
+    <li>✔️ Calcular a área total de sólidos geométricos, considerando todas as suas faces.</li>
+    <li>✔️ Determinar o volume desses sólidos a partir das fórmulas adequadas.</li>
+    <li>✔️ Aplicar essas fórmulas em problemas práticos, como encontrar a quantidade de material necessário para construir um objeto ou o espaço ocupado por ele.</li>
+  </ul>
+
+  <h3>📘 Fórmulas principais de área total e volume</h3>
+  <table class="area-table">
+    <thead>
+      <tr>
+        <th>Sólido</th>
+        <th>Área Total (A)</th>
+        <th>Volume (V)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Prisma</td>
+        <td>A = 2 × área da base + perímetro da base × altura</td>
+        <td>V = área da base × altura</td>
+      </tr>
+      <tr>
+        <td>Pirâmide</td>
+        <td>A = área da base + área das faces laterais</td>
+        <td>V = (área da base × altura) ÷ 3</td>
+      </tr>
+      <tr>
+        <td>Cilindro</td>
+        <td>A = 2πr² + 2πrh</td>
+        <td>V = πr²h</td>
+      </tr>
+      <tr>
+        <td>Cone</td>
+        <td>A = πr² + πrl (l = geratriz)</td>
+        <td>V = (πr²h) ÷ 3</td>
+      </tr>
+      <tr>
+        <td>Esfera</td>
+        <td>A = 4πr²</td>
+        <td>V = (4πr³) ÷ 3</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="legend">
+    <p><strong>Legenda:</strong></p>
+    <ul>
+      <li><strong>r</strong> = raio</li>
+      <li><strong>h</strong> = altura</li>
+      <li><strong>l</strong> = geratriz (lado inclinado do cone)</li>
+    </ul>
+  </div>
+
+
+
+
+  <label for="solidSelect"><strong>Escolha o sólido:</strong></label><br />
+  <select id="solidSelect" style="margin: 10px 0; padding: 5px;">
+    <option value="cilindro">Cilindro</option>
+    <option value="cone">Cone</option>
+    <option value="esfera">Esfera</option>
+    <option value="prisma">Prisma (base retangular)</option>
+  </select>
+
+  <div id="controls" style="margin-top:15px;"></div>
+
+  <div id="output" style="margin-top:15px; font-weight: bold;">
+    <p>Área Total: <span id="area">-</span></p>
+    <p>Volume: <span id="volume">-</span></p>
+  </div>
+
+  <svg id="solidSvg" width="300" height="250" style="border:1px solid #ccc; margin-top:15px; background:#f9f9f9;">
+    <!-- desenho do sólido aparece aqui -->
+  </svg>
+</section>
+
+<script>
+  const solidSelect = document.getElementById('solidSelect');
+  const controls = document.getElementById('controls');
+  const areaOutput = document.getElementById('area');
+  const volumeOutput = document.getElementById('volume');
+  const svg = document.getElementById('solidSvg');
+
+  // Cria sliders dinamicamente
+  function createSlider(id, label, min, max, step, value) {
+    const container = document.createElement('div');
+    container.style.marginBottom = '10px';
+
+    const labelEl = document.createElement('label');
+    labelEl.htmlFor = id;
+    labelEl.textContent = label + ': ';
+
+    const input = document.createElement('input');
+    input.type = 'range';
+    input.id = id;
+    input.min = min;
+    input.max = max;
+    input.step = step;
+    input.value = value;
+    input.style.width = '150px';
+    input.style.verticalAlign = 'middle';
+
+    const valueSpan = document.createElement('span');
+    valueSpan.textContent = value;
+    valueSpan.style.marginLeft = '8px';
+    valueSpan.style.minWidth = '30px';
+    valueSpan.style.display = 'inline-block';
+
+    input.addEventListener('input', () => {
+      valueSpan.textContent = input.value;
+      calculateAndDraw();
+    });
+
+    container.appendChild(labelEl);
+    container.appendChild(input);
+    container.appendChild(valueSpan);
+
+    return container;
+  }
+
+  // Função que calcula área e volume e chama o desenho
+  function calculateAndDraw() {
+    const solid = solidSelect.value;
+
+    // Valores padrão para medidas
+    let r = parseFloat(document.getElementById('r')?.value) || 0;
+    let h = parseFloat(document.getElementById('h')?.value) || 0;
+    let l = parseFloat(document.getElementById('l')?.value) || 0;
+    let area = 0;
+    let volume = 0;
+
+    if (solid === 'cilindro') {
+      area = 2 * Math.PI * r * r + 2 * Math.PI * r * h;
+      volume = Math.PI * r * r * h;
+    } else if (solid === 'cone') {
+      area = Math.PI * r * r + Math.PI * r * l;
+      volume = (Math.PI * r * r * h) / 3;
+    } else if (solid === 'esfera') {
+      area = 4 * Math.PI * r * r;
+      volume = (4 / 3) * Math.PI * r * r * r;
+    } else if (solid === 'prisma') {
+      // prisma base retangular simples: base=r, altura base=l, altura total h
+      area = 2 * (r * l) + 2 * (r * h) + 2 * (l * h);
+      volume = r * l * h;
+    }
+
+    areaOutput.textContent = area.toFixed(2) + ' unidades²';
+    volumeOutput.textContent = volume.toFixed(2) + ' unidades³';
+
+    drawSolid(solid, r, h, l);
+  }
+
+  // Função que desenha o sólido no SVG
+  function drawSolid(solid, r, h, l) {
+    svg.innerHTML = ''; // limpa desenho
+
+    if (solid === 'cilindro') {
+      const cx = 150;
+      const cy = 200;
+      const radiusX = Math.min(r * 8, 80);
+      const radiusY = radiusX / 3;
+      const height = Math.min(h * 6, 150);
+
+      // base elíptica (baixo)
+      const base = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+      base.setAttribute('cx', cx);
+      base.setAttribute('cy', cy);
+      base.setAttribute('rx', radiusX);
+      base.setAttribute('ry', radiusY);
+      base.setAttribute('fill', '#6cace4');
+      base.setAttribute('stroke', '#2c3e50');
+      base.setAttribute('stroke-width', '2');
+      svg.appendChild(base);
+
+      // corpo cilindro (retângulo)
+      const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      rect.setAttribute('x', cx - radiusX);
+      rect.setAttribute('y', cy - height);
+      rect.setAttribute('width', radiusX * 2);
+      rect.setAttribute('height', height);
+      rect.setAttribute('fill', '#a2c4f7');
+      rect.setAttribute('stroke', '#2c3e50');
+      rect.setAttribute('stroke-width', '2');
+      svg.appendChild(rect);
+
+      // topo elíptico (em cima)
+      const top = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+      top.setAttribute('cx', cx);
+      top.setAttribute('cy', cy - height);
+      top.setAttribute('rx', radiusX);
+      top.setAttribute('ry', radiusY);
+      top.setAttribute('fill', '#6cace4');
+      top.setAttribute('stroke', '#2c3e50');
+      top.setAttribute('stroke-width', '2');
+      svg.appendChild(top);
+    }
+    else if (solid === 'cone') {
+      const cx = 150;
+      const cy = 200;
+      const radius = Math.min(r * 8, 80);
+      const height = Math.min(h * 6, 150);
+
+      // base elíptica (abaixo)
+      const base = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+      base.setAttribute('cx', cx);
+      base.setAttribute('cy', cy);
+      base.setAttribute('rx', radius);
+      base.setAttribute('ry', radius / 3);
+      base.setAttribute('fill', '#f9a825');
+      base.setAttribute('stroke', '#b27500');
+      base.setAttribute('stroke-width', '2');
+      svg.appendChild(base);
+
+      // corpo cone (triângulo)
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      const tipX = cx;
+      const tipY = cy - height;
+      const leftBaseX = cx - radius;
+      const rightBaseX = cx + radius;
+      const baseY = cy;
+
+      const d = `M ${leftBaseX} ${baseY} L ${tipX} ${tipY} L ${rightBaseX} ${baseY} Z`;
+      path.setAttribute('d', d);
+      path.setAttribute('fill', '#fbc02d');
+      path.setAttribute('stroke', '#b27500');
+      path.setAttribute('stroke-width', '2');
+      svg.appendChild(path);
+    }
+    else if (solid === 'esfera') {
+      const cx = 150;
+      const cy = 150;
+      const radiusX = Math.min(r * 8, 80);
+      const radiusY = radiusX;
+
+      // círculo para representar a esfera (vista 2D)
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute('cx', cx);
+      circle.setAttribute('cy', cy);
+      circle.setAttribute('r', radiusX);
+      circle.setAttribute('fill', '#4caf50');
+      circle.setAttribute('stroke', '#2e7d32');
+      circle.setAttribute('stroke-width', '2');
+      svg.appendChild(circle);
+
+      // linha do equador
+      const equator = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+      equator.setAttribute('cx', cx);
+      equator.setAttribute('cy', cy);
+      equator.setAttribute('rx', radiusX);
+      equator.setAttribute('ry', radiusX / 4);
+      equator.setAttribute('fill', 'none');
+      equator.setAttribute('stroke', '#1b5e20');
+      equator.setAttribute('stroke-width', '1.5');
+      svg.appendChild(equator);
+    }
+    else if (solid === 'prisma') {
+      const cx = 150;
+      const cy = 150;
+      const baseX = Math.min(r * 10, 100);
+      const baseY = Math.min(l * 10, 100);
+      const height = Math.min(h * 6, 120);
+
+      // base retangular (embaixo)
+      const base = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      base.setAttribute('x', cx - baseX / 2);
+      base.setAttribute('y', cy + (height / 2) - baseY);
+      base.setAttribute('width', baseX);
+      base.setAttribute('height', baseY);
+      base.setAttribute('fill', '#ba68c8');
+      base.setAttribute('stroke', '#6a1b9a');
+      base.setAttribute('stroke-width', '2');
+      svg.appendChild(base);
+
+      // corpo prisma (retângulo vertical)
+      const body = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      body.setAttribute('x', cx - baseX / 2);
+      body.setAttribute('y', cy - height / 2);
+      body.setAttribute('width', baseX);
+      body.setAttribute('height', height);
+      body.setAttribute('fill', '#ce93d8');
+      body.setAttribute('stroke', '#6a1b9a');
+      body.setAttribute('stroke-width', '2');
+      svg.appendChild(body);
+
+      // linha de perspectiva - base superior
+      const topBase = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      topBase.setAttribute('x', cx - baseX / 2);
+      topBase.setAttribute('y', cy - height / 2 - baseY);
+      topBase.setAttribute('width', baseX);
+      topBase.setAttribute('height', baseY);
+      topBase.setAttribute('fill', '#ab47bc');
+      topBase.setAttribute('stroke', '#4a148c');
+      topBase.setAttribute('stroke-width', '2');
+      svg.appendChild(topBase);
+    }
+  }
+
+  // Atualiza os controles de acordo com o sólido escolhido
+  function updateControls() {
+    controls.innerHTML = '';
+    const solid = solidSelect.value;
+
+    if (solid === 'cilindro') {
+      controls.appendChild(createSlider('r', 'Raio (r)', 1, 15, 0.1, 5));
+      controls.appendChild(createSlider('h', 'Altura (h)', 1, 30, 0.1, 10));
+    } else if (solid === 'cone') {
+      controls.appendChild(createSlider('r', 'Raio (r)', 1, 15, 0.1, 5));
+      controls.appendChild(createSlider('h', 'Altura (h)', 1, 30, 0.1, 10));
+      controls.appendChild(createSlider('l', 'Geratriz (l)', 1, 30, 0.1, 11));
+    } else if (solid === 'esfera') {
+      controls.appendChild(createSlider('r', 'Raio (r)', 1, 15, 0.1, 5));
+    } else if (solid === 'prisma') {
+      controls.appendChild(createSlider('r', 'Base (r)', 1, 15, 0.1, 5));
+      controls.appendChild(createSlider('l', 'Altura da base (l)', 1, 15, 0.1, 5));
+      controls.appendChild(createSlider('h', 'Altura total (h)', 1, 30, 0.1, 10));
+    }
+    calculateAndDraw();
+  }
+
+  solidSelect.addEventListener('change', updateControls);
+
+  updateControls(); // inicializa controles na carga da página
+</script>
+
+
+</section>
+
+
+    <section class="card">
+    <h2>📏 Descritor D12</h2>
+    <p><strong>Resolver problema envolvendo o cálculo de área de figuras planas</strong></p>
+    
+    <p>🔎 <strong>O que significa?</strong><br>
+    Esse descritor avalia se o estudante consegue calcular a <strong>área de figuras planas</strong>, ou seja, formas geométricas bidimensionais (sem volume), como:</p>
+    
+    <ul>
+      <li>🔹 Triângulo</li>
+      <li>🔹 Quadrado</li>
+      <li>🔹 Retângulo</li>
+      <li>🔹 Paralelogramo</li>
+      <li>🔹 Trapézio</li>
+      <li>🔹 Círculo</li>
+    </ul>
+    
+
+    <h3>📘 Figuras Planas e suas Fórmulas</h3>
+    <table class="area-table">
+      <thead>
+        <tr>
+          <th>Figura</th>
+          <th>Fórmula da Área</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Retângulo</td>
+          <td>A = b × h</td>
+        </tr>
+        <tr>
+          <td>Quadrado</td>
+          <td>A = l²</td>
+        </tr>
+        <tr>
+          <td>Triângulo</td>
+          <td>A = (b × h) ÷ 2</td>
+        </tr>
+        <tr>
+          <td>Paralelogramo</td>
+          <td>A = b × h</td>
+        </tr>
+        <tr>
+          <td>Trapézio</td>
+          <td>A = (B + b) × h ÷ 2</td>
+        </tr>
+        <tr>
+          <td>Círculo</td>
+          <td>A = π × r²</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="legend">
+      <p><strong>Legenda:</strong></p>
+      <ul>
+        <li><strong>b</strong> = base</li>
+        <li><strong>h</strong> = altura</li>
+        <li><strong>l</strong> = lado</li>
+        <li><strong>r</strong> = raio</li>
+        <li><strong>B</strong> = base maior</li>
+      </ul>
+    </div>
+
+
+     <h2>📏 Calculadora de Área</h2>
+  
+  <label for="calc-shape">Escolha a figura:</label>
+  <select id="calc-shape">
+    <option value="retangulo">Retângulo</option>
+    <option value="quadrado">Quadrado</option>
+    <option value="triangulo">Triângulo</option>
+    <option value="paralelogramo">Paralelogramo</option>
+    <option value="trapezio">Trapézio</option>
+    <option value="circulo">Círculo</option>
+  </select>
+
+  <div id="calc-inputs" style="margin-top: 10px;"></div>
+  
+  <button onclick="calcularArea()" style="margin-top: 10px;">Calcular Área</button>
+  
+  <p id="calc-resultado"></p>
+</section>
+
+<script>
+  const shapeSelect = document.getElementById('calc-shape');
+  const inputsDiv = document.getElementById('calc-inputs');
+  const resultado = document.getElementById('calc-resultado');
+
+  function criarInputs(shape) {
+    let html = '';
+    switch(shape) {
+      case 'retangulo':
+        html = `
+          <label>Base (b): <input type="number" id="calc-b" min="0" step="any" /></label>
+          <label>Altura (h): <input type="number" id="calc-h" min="0" step="any" /></label>
+        `;
+        break;
+      case 'quadrado':
+        html = `<label>Lado (l): <input type="number" id="calc-l" min="0" step="any" /></label>`;
+        break;
+      case 'triangulo':
+        html = `
+          <label>Base (b): <input type="number" id="calc-b" min="0" step="any" /></label>
+          <label>Altura (h): <input type="number" id="calc-h" min="0" step="any" /></label>
+        `;
+        break;
+      case 'paralelogramo':
+        html = `
+          <label>Base (b): <input type="number" id="calc-b" min="0" step="any" /></label>
+          <label>Altura (h): <input type="number" id="calc-h" min="0" step="any" /></label>
+        `;
+        break;
+      case 'trapezio':
+        html = `
+          <label>Base maior (B): <input type="number" id="calc-B" min="0" step="any" /></label>
+          <label>Base menor (b): <input type="number" id="calc-b" min="0" step="any" /></label>
+          <label>Altura (h): <input type="number" id="calc-h" min="0" step="any" /></label>
+        `;
+        break;
+      case 'circulo':
+        html = `<label>Raio (r): <input type="number" id="calc-r" min="0" step="any" /></label>`;
+        break;
+    }
+    inputsDiv.innerHTML = html;
+    resultado.textContent = '';
+  }
+
+  shapeSelect.addEventListener('change', () => criarInputs(shapeSelect.value));
+  criarInputs(shapeSelect.value);
+
+  function calcularArea() {
+    let area = 0;
+    try {
+      switch(shapeSelect.value) {
+        case 'retangulo': {
+          const base = Number(document.getElementById('calc-b').value);
+          const altura = Number(document.getElementById('calc-h').value);
+          if (!base || !altura) throw 'Preencha base e altura com números positivos!';
+          area = base * altura;
+          break;
+        }
+        case 'quadrado': {
+          const lado = Number(document.getElementById('calc-l').value);
+          if (!lado) throw 'Preencha o lado com número positivo!';
+          area = lado ** 2;
+          break;
+        }
+        case 'triangulo': {
+          const base = Number(document.getElementById('calc-b').value);
+          const altura = Number(document.getElementById('calc-h').value);
+          if (!base || !altura) throw 'Preencha base e altura com números positivos!';
+          area = (base * altura) / 2;
+          break;
+        }
+        case 'paralelogramo': {
+          const base = Number(document.getElementById('calc-b').value);
+          const altura = Number(document.getElementById('calc-h').value);
+          if (!base || !altura) throw 'Preencha base e altura com números positivos!';
+          area = base * altura;
+          break;
+        }
+        case 'trapezio': {
+          const baseMaior = Number(document.getElementById('calc-B').value);
+          const baseMenor = Number(document.getElementById('calc-b').value);
+          const altura = Number(document.getElementById('calc-h').value);
+          if (!baseMaior || !baseMenor || !altura) throw 'Preencha todas as bases e altura com números positivos!';
+          area = ((baseMaior + baseMenor) * altura) / 2;
+          break;
+        }
+        case 'circulo': {
+          const raio = Number(document.getElementById('calc-r').value);
+          if (!raio) throw 'Preencha o raio com número positivo!';
+          area = Math.PI * raio ** 2;
+          break;
+        }
+      }
+      resultado.textContent = `Área: ${area.toFixed(2)} unidades²`;
+    } catch(err) {
+      alert(err);
+      resultado.textContent = '';
+    }
+  }
+</script>
+
+    
+  </section>
+  </main>
+
+  <footer class="footer-grama">
+    <p>&copy; 2025 - Guia Matemático SAEB</p>
+  </footer>
+
+</body>
+</html>
+

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulado SAEB - Guia Matemático</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Estilos para o botão finalizar e mensagem parabéns */
+    .final-simulado {
+      text-align: center;
+      margin: 2rem 0 4rem;
+    }
+
+    /* Esconde o checkbox */
+    .final-simulado input[type="checkbox"] {
+      display: none;
+    }
+
+    /* Botão estilizado */
+    .btn-finalizar {
+      display: inline-block;
+      background-color: #2e6bd3;
+      color: white;
+      padding: 15px 30px;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      user-select: none;
+      font-size: 1.2rem;
+    }
+
+    .btn-finalizar:hover {
+      background-color: #1b46a1;
+    }
+
+    /* Mensagem escondida por padrão */
+    .mensagem-parabens {
+      display: none;
+      margin-top: 2rem;
+      background: #fffbea;
+      border: 2px solid gold;
+      border-radius: 12px;
+      padding: 20px;
+      color: #a67c00;
+      font-weight: bold;
+      box-shadow: 0 0 15px gold;
+      animation: brilho 2s infinite alternate;
+      font-size: 1.3rem;
+    }
+
+    /* Mostrar a mensagem quando checkbox marcado */
+    .final-simulado input[type="checkbox"]:checked ~ .mensagem-parabens {
+      display: block;
+    }
+
+    /* Animação brilho */
+    @keyframes brilho {
+      0% { box-shadow: 0 0 10px gold; }
+      100% { box-shadow: 0 0 25px gold; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Questões de Matemática - SAEB</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Página Inicial</a></li>
+        <li><a href="index1.html">Sobre o SAEB</a></li>
+        <li><a href="index2.html">Descritores</a></li>
+        <li><a href="index4.html">Autores</a></li>
+        <li><a href="index5.html">Dicas</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <main class="quiz">
+
+  <!-- QUESTÃO 1 -->
+  <section class="question">
+    <h2>1. (D5) Um caminhão sobe uma rampa inclinada 15° em relação ao plano horizontal. Sabendo-se que a distância HORIZONTAL que separa o início da rampa até o ponto vertical mede 24 m, a que altura, em metros, aproximadamente, estará o caminhão depois de percorrer toda a rampa?</h2>
+    <img src="imgagem retan.png" alt="Triângulo da rampa com ângulo de 15 graus e base 24 metros" class="questao-img" />
+
+    <ul class="options">
+      <li><input type="radio" name="q1" id="q1a" /><label for="q1a">A) 6 m</label><span class="resposta correta">✅ Correto!</span></li>
+      <li><input type="radio" name="q1" id="q1b" /><label for="q1b">B) 23 m</label><span class="resposta">❌ Errado!</span></li>
+      <li><input type="radio" name="q1" id="q1c" /><label for="q1c">C) 25 m</label><span class="resposta">❌ Errado!</span></li>
+      <li><input type="radio" name="q1" id="q1d" /><label for="q1d">D) 92 m</label><span class="resposta">❌ Errado!</span></li>
+      <li><input type="radio" name="q1" id="q1e" /><label for="q1e">E) 100 m</label><span class="resposta">❌ Errado!</span></li>
+    </ul>
+
+    <!-- Resolução em vídeo e texto -->
+    <details>
+      <summary>Ver resolução em vídeo</summary>
+      <div class="video-container">
+        <video controls>
+          <source src="video rororesolução.mp4" type="video/mp4">
+          Seu navegador não suporta a reprodução de vídeos.
+        </video>
+      </div>
+    </details>
+
+    <details>
+      <summary>Ver resolução resumida</summary>
+      <p>A questão fornece um triângulo retângulo onde o ângulo de 15° está na base e a distância horizontal (cateto adjacente) é de 24 metros. Queremos encontrar a altura x (cateto oposto).</p>
+      <p>Usamos a fórmula: <strong>tg(θ) = cateto oposto / cateto adjacente</strong><br>Substituindo: <strong>tg(15°) = x / 24</strong><br><strong>0,26 = x / 24</strong><br>x = 0,26 × 24 = <strong>6,24</strong></p>
+      <p>Portanto, a altura é aproximadamente 6 metros. Alternativa correta: <strong>letra A</strong>.</p>
+    </details>
+  </section>
+
+  <!-- QUESTÃO 2 -->
+  <section class="question">
+    <h2>2. (D13) Um corpo cilíndrico, com 4 cm de raio e 12 cm de altura, está com água até a altura de 8 cm. Foram então colocadas em seu interior n bolas de gude, e o nível da água atingiu a boca do vidro, sem derramamento. Qual é o volume, em cm³, de todas as n bolas de gude juntas?
+</h2>
+
+    <ul class="options">
+      <li><input type="radio" name="q2" id="q2a" /><label for="q2a">A) 32π</label><span class="resposta">❌ Errado!</span></li>
+      <li><input type="radio" name="q2" id="q2b" /><label for="q2b">B) 48π</label><span class="resposta">❌ Errado!</span></li>
+      <li><input type="radio" name="q2" id="q2c" /><label for="q2c">C) 64π</label><span class="resposta correta">✅ Correto!</span></li>
+      <li><input type="radio" name="q2" id="q2d" /><label for="q2d">D) 80π</label><span class="resposta">❌ Errado!</span></li>
+      <li><input type="radio" name="q2" id="q2e" /><label for="q2e">E) 90π</label><span class="resposta">❌ Errado!</span></li>
+    </ul>
+
+    <details>
+      <summary>Ver resolução em vídeo</summary>
+      <div class="video-container">
+        <video controls>
+          <source src="video" type="video/mp4">
+          Seu navegador não suporta a reprodução de vídeos.
+        </video>
+      </div>
+    </details>
+
+    <details> 
+  <summary>Ver resolução resumida</summary>
+  <p>Dados:</p>
+  
+  <ul>
+    <li>Raio do cilindro (r) = 4 cm</li>
+    <li>Altura total do cilindro (h total) = 12 cm</li>
+    <li>Altura inicial da água (h inicial) = 8 cm</li>
+  </ul>
+ 
+  <p>O volume inicial de água é o volume do cilindro até 8 cm de altura:</p>
+  <p><strong>Volume inicial da água = π × r² × h inicial = π × 4² × 8 = 128π cm³</strong></p>
+  <p>Após colocar as bolas de gude, a água sobe até a boca do cilindro (altura 12 cm), então o volume total ocupado pela água mais as bolas é:</p>
+  <p><strong>Volume total = π × r² × h total = π × 4² × 12 = 192π cm³</strong></p>
+  <p>O volume das bolas de gude é a diferença entre o volume total e o volume inicial de água:</p>
+  <p><strong>Volume das bolas = Volume total - Volume inicial da água = 192π - 128π = 64π cm³</strong></p>
+  <p><strong>Resposta correta: alternativa C) 64π</strong>.</p>
+</details>
+
+  </section>
+
+  <!-- QUESTÃO 3 -->
+  <section class="question">
+    <h2>3. (D12) Um terreno quadrangular de 676 m² de medida de área foi contornado em 3 voltas com arame farpado. O total de arame utilizado tem medida de:</h2>
+
+    <ul class="options">
+      <li><input type="radio" name="q3" id="q3a" /><label for="q3a">A) 104 m</label><span class="resposta">❌ Errado!</span></li>
+      <li><input type="radio" name="q3" id="q3b" /><label for="q3b">B) 156 m</label><span class="resposta">❌ Errado!</span></li>
+      <li><input type="radio" name="q3" id="q3c" /><label for="q3c">C) 169 m</label><span class="resposta">❌ Errado!</span></li>
+      <li><input type="radio" name="q3" id="q3d" /><label for="q3d">D) 312 m</label><span class="resposta correta">✅ Correto!</span></li>
+      <li><input type="radio" name="q3" id="q3e" /><label for="q3e">E) 676 m</label><span class="resposta">❌ Errado!</span></li>
+    </ul>
+
+    <details>
+      <summary>Ver resolução em vídeo</summary>
+      <div class="video-container">
+        <video controls>
+          <source src="Vídeo kaka.mp4" type="video/mp4">
+          Seu navegador não suporta a reprodução de vídeos.
+        </video>
+      </div>
+    </details>
+
+    <details>
+      <summary>Ver resolução resumida</summary>
+      <p>Área = 676 m² → Lado do quadrado = √676 = <strong>26 m</strong></p>
+      <p>Perímetro = 4 × 26 = <strong>104 m</strong> → 3 voltas: 3 × 104 = <strong>312 m</strong></p>
+      <p>Resposta correta: <strong>letra D</strong></p>
+    </details>
+  </section>
+
+  <!-- Tela final de parabéns -->
+  <section class="final-simulado">
+    <input type="checkbox" id="finalizar" />
+    <label for="finalizar" class="btn-finalizar">Finalizar Simulado</label>
+
+    <div class="mensagem-parabens">
+      <h2>🎉 Parabéns, você terminou o simulado!</h2>
+      <p>Atualize suas medalhas! 🏅🥈🥉</p>
+    </div>
+  </section>
+
+</main>
+
+  <footer class="footer-grama">
+    <p>&copy; 2025 - Guia Matemático SAEB</p>
+  </footer>
+
+</body>
+</html>
